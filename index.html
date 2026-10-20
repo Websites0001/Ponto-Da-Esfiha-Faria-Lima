@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ponto da Esfiha Faria Lima</title>
+  <meta name="description" content="Cardápio do Ponto da Esfiha Faria Lima, em Taubaté: esfiha aberta a partir de R$ 3,10, pizzas broto e grande (meio a meio), beirutes, lanches, fogazzas e porções. Av. Brig. José Vicente de Faria Lima, 750.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#FFF4E2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=DM+Sans:opsz,wght@9..40,400..800&display=swap" rel="stylesheet">
+  <script>try { if (JSON.parse(localStorage.getItem('pontoesfiha-tema')) === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}</script>
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="icon" href="fotos/local/logo-ponto-da-esfiha.png">
+</head>
+<body>
+  <a class="skip" href="#cardapio">Pular para o cardápio</a>
+
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__esfiha"><span></span><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="loader__word">Ponto <small>da</small> Esfiha</div>
+  </div>
+
+  <header class="topbar" id="topbar">
+    <div class="topbar__inner wrap">
+      <a href="#inicio" class="brand" aria-label="Ponto da Esfiha Faria Lima, voltar ao início">
+        <img src="fotos/local/logo-ponto-da-esfiha.png" alt="" width="48" height="48">
+        <span class="brand__txt"><b>Ponto da Esfiha</b><small>Faria Lima · Taubaté</small></span>
+      </a>
+      <nav class="topnav" aria-label="Seções">
+        <a href="#caixa">Monte sua caixa</a>
+        <a href="#cardapio">Cardápio</a>
+        <a href="#combos">Combos</a>
+        <button type="button" data-open-explore>Galeria infinita</button>
+        <a href="#casa">A casa</a>
+        <a href="#onde">Onde estamos</a>
+      </nav>
+      <div class="topbar__actions">
+        <span class="status" id="status"><i></i><span>—</span></span>
+        <button type="button" class="icon-btn" id="themeBtn" aria-label="Alternar tema claro e escuro">
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+        </button>
+        <button type="button" class="bag-btn" id="bagBtn" aria-label="Abrir sacola de pedido">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8h13l-1 12.2a1 1 0 0 1-1 .8h-9a1 1 0 0 1-1-.8z"/><path d="M9 8V6.8a3 3 0 0 1 6 0V8"/></svg>
+          <span class="bag-btn__label">Sacola</span>
+          <span class="bag-btn__count" id="bagCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- Hero: o endereço do sabor -->
+    <section class="hero wrap" aria-labelledby="heroTitle">
+      <div class="hero__copy">
+        <div class="plate" aria-label="Endereço: Avenida Brigadeiro José Vicente de Faria Lima, 750">
+          <span class="plate__kind">Av. Brig.</span>
+          <span class="plate__name">Faria Lima</span>
+          <span class="plate__num">750</span>
+          <span class="plate__hood">Jardim Maria Augusta · Taubaté</span>
+        </div>
+        <h1 class="hero__title" id="heroTitle">
+          <span class="ln"><span class="w">O endereço</span></span>
+          <span class="ln"><span class="w">do <em>sabor</em>.</span></span>
+        </h1>
+        <p class="hero__lead">Esfiha aberta de <b data-count-cat="esfihas,especiais,doces">67</b> sabores, pizza broto ou grande meio a meio, beirute, lanche e fogazza. Peça pelo WhatsApp, retire no balcão ou venha comer aqui.</p>
+        <div class="hero__cta">
+          <a href="#caixa" class="btn btn--red">Monte sua caixa <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+          <a href="#cardapio" class="btn btn--ghost">Ver cardápio</a>
+        </div>
+        <ul class="hero__facts">
+          <li><b id="factPreco">R$ 3,10</b><span>a esfiha de carne</span></li>
+          <li><b id="factHoje">16h–23h45</b><span id="factHojeTxt">hoje</span></li>
+          <li><b data-loja-entrega="tempo"></b><span>tempo de entrega</span></li>
+        </ul>
+      </div>
+      <div class="hero__stage" aria-hidden="true">
+        <div class="board">
+          <div class="board__photo"><img data-foto="perto" alt=""></div>
+          <div class="orbit" id="orbit"></div>
+        </div>
+        <span class="badge-float b1"><small>esfiha</small>R$ 3,10</span>
+        <span class="badge-float b2">Pizza meio a meio</span>
+        <span class="badge-float b3">Esfiha aberta</span>
+        <span class="board__credit">Foto da loja no Google Maps</span>
+      </div>
+    </section>
+
+    <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C 120 0, 240 60, 360 30 S 600 0, 720 30 S 960 60, 1080 30 S 1320 0, 1440 30 V60 H0Z"/></svg>
+    <div class="band" aria-hidden="true">
+      <div class="band__row"><div class="band__track" id="bandA"></div></div>
+      <div class="band__row band__row--alt"><div class="band__track" id="bandB"></div></div>
+    </div>
+
+    <!-- Monte sua caixa -->
+    <section class="box wrap" id="caixa" aria-labelledby="boxTitle">
+      <div class="box__head">
+        <div>
+          <p class="kicker">Monte sua caixa</p>
+          <h2 class="h2" id="boxTitle">Cada esfiha <em>do seu jeito</em>.</h2>
+          <p class="box__intro">Escolha o tamanho da caixa e toque nos sabores. A conta é a soma das esfihas avulsas; se a caixa bater com um combo, a gente avisa.</p>
+        </div>
+        <div class="sizes" role="radiogroup" aria-label="Tamanho da caixa" id="boxSizes">
+          <label><input type="radio" name="bx" value="10"><span><b>10</b> esfihas</span></label>
+          <label><input type="radio" name="bx" value="20" checked><span><b>20</b> esfihas</span></label>
+          <label><input type="radio" name="bx" value="40"><span><b>40</b> esfihas</span></label>
+        </div>
+      </div>
+      <div class="box__grid">
+        <div class="box__visual">
+          <div class="crate" id="crate">
+            <div class="crate__lid" aria-hidden="true"><img src="fotos/local/logo-ponto-da-esfiha.png" alt=""></div>
+            <div class="crate__slots" id="slots" aria-hidden="true"></div>
+          </div>
+          <div class="box__sum" aria-live="polite">
+            <div class="box__count"><b id="boxCount">0</b><span>de <span id="boxSize">20</span></span></div>
+            <div class="box__total"><b id="boxTotal">R$ 0,00</b><span id="boxAvg">escolha os sabores</span></div>
+          </div>
+          <p class="box__hint" id="boxHint" hidden></p>
+          <div class="box__actions">
+            <button type="button" class="btn btn--ghost btn--sm" id="boxFill">Completar com carne</button>
+            <button type="button" class="btn btn--ghost btn--sm" id="boxClear">Esvaziar</button>
+            <button type="button" class="btn btn--red" id="boxAdd" disabled>Pôr a caixa na sacola</button>
+          </div>
+        </div>
+        <div class="box__picker">
+          <div class="pick-sum" id="pickSum" aria-hidden="true"></div>
+          <div class="pick-tabs" role="tablist" aria-label="Tipo de esfiha" id="pickTabs">
+            <button type="button" role="tab" aria-selected="true" data-pt="esfihas">Salgadas</button>
+            <button type="button" role="tab" aria-selected="false" data-pt="especiais">Especiais</button>
+            <button type="button" role="tab" aria-selected="false" data-pt="doces">Doces</button>
+          </div>
+          <ul class="pick-list" id="pickList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Combos (carrossel infinito) -->
+    <section class="favs" id="combos" aria-labelledby="favsTitle">
+      <div class="wrap favs__head">
+        <div>
+          <p class="kicker">Combos da casa</p>
+          <h2 class="h2" id="favsTitle">Caixa fechada, <em>preço fechado</em>.</h2>
+        </div>
+        <div class="favs__ctrl">
+          <span class="hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12h8M5 9l-3 3 3 3M19 9l3 3-3 3"/></svg>Arraste</span>
+          <button type="button" class="round-btn" id="favPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="round-btn" id="favNext" aria-label="Próximo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="favs__viewport" id="favViewport"><div class="favs__track" id="favTrack" role="list"></div></div>
+    </section>
+
+    <!-- Cardápio -->
+    <section class="menu" id="cardapio" aria-labelledby="menuTitle">
+      <div class="wrap menu__intro">
+        <p class="kicker">Cardápio completo</p>
+        <h2 class="h2" id="menuTitle"><span id="menuCount">165</span> itens, <em>da esfiha à pizza</em>.</h2>
+        <p class="menu__note"><span class="ilus-dot" aria-hidden="true"></span>Itens sem foto no cardápio da loja aparecem com uma ilustração do sabor, feita a partir dos ingredientes.</p>
+        <div class="filters" id="filters" role="group" aria-label="Filtrar por ingrediente"></div>
+      </div>
+      <div class="menubar" id="menubar">
+        <div class="wrap menubar__inner">
+          <div class="tabs"><div class="tabs__scroller" id="tabsScroller">
+            <ul class="tabs__list" id="tabsList"></ul>
+            <ul class="tabs__list tabs__list--active" id="tabsActive" aria-hidden="true"></ul>
+          </div></div>
+          <label class="search" id="searchBox">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+            <span class="sr-only">Buscar no cardápio</span>
+            <input type="search" id="search" placeholder="Buscar: catupiry, calabresa, beirute…" autocomplete="off" enterkeyhint="search">
+            <button type="button" class="search__clear" id="searchClear" aria-label="Limpar busca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></button>
+          </label>
+        </div>
+      </div>
+      <div class="wrap" id="menuSections"></div>
+      <div class="wrap empty" id="empty" hidden>
+        <h3>Nada com esse nome</h3>
+        <p>Tente outra palavra ou limpe os filtros.</p>
+        <button type="button" class="btn btn--ghost" id="emptyReset">Limpar busca e filtros</button>
+      </div>
+    </section>
+
+    <!-- A casa: fotos reais em faixa infinita -->
+    <section class="house" id="casa" aria-labelledby="houseTitle">
+      <div class="wrap house__head">
+        <p class="kicker">A casa</p>
+        <h2 class="h2" id="houseTitle">Mesa posta <em>na Faria Lima</em>.</h2>
+        <p class="house__lead">Dá para pedir em casa, retirar no balcão ou comer no salão. Na página da loja no Facebook: <span id="perks"></span>.</p>
+      </div>
+      <div class="reel" id="reel" aria-label="Fotos da casa"></div>
+      <p class="wrap small house__credit">Fotos publicadas pela loja no Google Maps. A foto da mesa de esfihas está no Google Maps sem nome de autor.</p>
+    </section>
+
+    <!-- Onde estamos -->
+    <section class="where" id="onde" aria-labelledby="whereTitle">
+      <div class="wrap where__grid">
+        <div class="where__info">
+          <p class="kicker kicker--light">Onde estamos</p>
+          <h2 class="h2" id="whereTitle">Faria Lima, <em>750</em>.</h2>
+          <p class="where__addr"><span data-loja="endereco"></span> · <span data-loja="bairro"></span> · <span data-loja="cidade"></span></p>
+          <div class="where__cta" id="whereCta"></div>
+          <div class="cards3">
+            <div class="infocard"><h3>Horários</h3><ul class="hours" id="hours"></ul><p class="small">Horário do cardápio online. No Google aparece fechando à meia-noite.</p></div>
+            <div class="infocard"><h3>Entrega</h3><ul class="plain" id="delivery"></ul><p class="small">A taxa depende da distância e é confirmada no pedido.</p></div>
+            <div class="infocard"><h3>Pagamento</h3><ul class="plain" id="payments"></ul><p class="small">Na entrega ou no balcão.</p>
+              <h3 class="mt">No Google</h3><p class="rating"><b data-loja="nota"></b> de 5 · <span data-loja="avaliacoes"></span> avaliações</p></div>
+          </div>
+        </div>
+        <div class="where__map">
+          <iframe id="mapFrame" title="Mapa com a localização do Ponto da Esfiha Faria Lima" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <figure class="facade"><img data-foto="fachada" alt="Fachada do Ponto da Esfiha na Avenida Faria Lima" loading="lazy"><figcaption>Fachada · foto da loja no Google Maps</figcaption></figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__brand"><img src="fotos/local/logo-ponto-da-esfiha.png" alt="" width="44" height="44"><span>Ponto da Esfiha Faria Lima</span></div>
+      <p class="footer__note">Preços conforme o cardápio online da loja em 20/10/2026. Fotos dos itens: Ponto da Esfiha Faria Lima. Ilustrações feitas para esta prévia, a partir dos ingredientes de cada item.</p>
+      <p class="footer__note"><b>Prévia de site criada para apresentação.</b></p>
+    </div>
+    <div class="footer__giant" aria-hidden="true">Esfiha</div>
+  </footer>
+
+  <button type="button" class="cartbar" id="cartbar" aria-label="Ver sacola">
+    <span class="cartbar__count" id="cartbarCount">0</span>
+    <span class="cartbar__label">Ver sacola</span>
+    <span class="cartbar__total" id="cartbarTotal">R$ 0,00</span>
+  </button>
+
+  <div class="layer" id="detailLayer" hidden>
+    <div class="scrim" data-close></div>
+    <div class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="detailName" tabindex="-1">
+      <div class="grabber" aria-hidden="true"><span></span></div>
+      <button type="button" class="close-btn" data-close aria-label="Fechar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></button>
+      <div class="detail__media" id="detailMedia"></div>
+      <div class="detail__body" id="detailBody"></div>
+    </div>
+  </div>
+
+  <div class="layer" id="cartLayer" hidden>
+    <div class="scrim" data-close></div>
+    <aside class="cart" id="cart" role="dialog" aria-modal="true" aria-labelledby="cartTitle" tabindex="-1">
+      <div class="grabber" aria-hidden="true"><span></span></div>
+      <header class="cart__head">
+        <h2 id="cartTitle">Sua sacola</h2>
+        <button type="button" class="close-btn" data-close aria-label="Fechar sacola"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></button>
+      </header>
+      <div class="cart__body" id="cartBody"></div>
+      <footer class="cart__foot" id="cartFoot"></footer>
+    </aside>
+  </div>
+
+  <div class="explore" id="explore" role="dialog" aria-modal="true" aria-label="Galeria infinita do cardápio" hidden>
+    <div class="explore__world" id="exploreWorld"></div>
+    <div class="explore__ui">
+      <div class="explore__title"><span class="kicker">Galeria infinita</span><p>Arraste pra qualquer lado. Toque num item pra ver os detalhes.</p></div>
+      <button type="button" class="close-btn close-btn--lg" id="exploreClose" aria-label="Fechar galeria"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></button>
+    </div>
+    <div class="explore__cursor" id="exploreCursor" aria-hidden="true">Arraste</div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/dados.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
